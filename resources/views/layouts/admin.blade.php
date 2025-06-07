@@ -31,6 +31,40 @@
                     </a>
                 </h1>
                 <div class="navbar-nav flex-row order-md-last">
+                    @auth
+                        @php
+                            $userProjects = Auth::user()->projects()->orderBy('channel_name_final')->get();
+                            $activeProject = $userProjects->firstWhere('is_active', true);
+                        @endphp
+                        <div class="nav-item dropdown me-2">
+                            <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open project menu">
+                                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M9 4v16" /><path d="M14 10l2 2l-2 2" /></svg>
+                                </span>
+                                <span class="d-none d-xl-block ps-2">
+                                    <div>{{ $activeProject->channel_name_final ?? 'Pilih Proyek' }}</div>
+                                    <div class="mt-1 small text-muted">{{ $activeProject ? 'Proyek Aktif' : 'Tidak ada proyek aktif' }}</div>
+                                </span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                @forelse($userProjects as $project)
+                                    <form action="{{ route('projects.activate', $project) }}" method="POST" class="d-block">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item {{ $project->is_active ? 'active' : '' }}">
+                                            {{ $project->channel_name_final }}
+                                        </button>
+                                    </form>
+                                @empty
+                                    <span class="dropdown-item disabled">Anda belum punya proyek.</span>
+                                @endforelse
+                                <div class="dropdown-divider"></div>
+                                <a href="{{ route('projects.create') }}" class="dropdown-item text-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus me-1" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg>
+                                    Buat Proyek Baru
+                                </a>
+                            </div>
+                        </div>
+                    @endauth
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
                             <span class="avatar avatar-sm" style="background-image: url(https://placehold.co/40x40/EBF4FF/7F9CF5?text=RA)"></span>
@@ -72,6 +106,12 @@
             <!-- Page body -->
             <div class="page-body">
                 <div class="container-xl">
+                    {{-- Alert untuk notifikasi --}}
+                    @if(session('success'))
+                        <div class="alert alert-success" role="alert">
+                           {{ session('success') }}
+                        </div>
+                    @endif
                     @yield('content')
                 </div>
             </div>

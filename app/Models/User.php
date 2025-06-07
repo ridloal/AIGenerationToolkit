@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -75,5 +76,13 @@ class User extends Authenticatable
     public function assignRole(Role $role): void
     {
         $this->roles()->syncWithoutDetaching([$role->id]);
+    }
+
+    /**
+     * Get the projects for the user.
+     */
+    public function projects(): HasMany
+    {
+        return $this->hasMany(Project::class);
     }
 }

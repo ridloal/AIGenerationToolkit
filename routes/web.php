@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,11 +24,20 @@ Route::get('/dashboard', function () {
 // Auth routes (sudah ada dari Breeze)
 require __DIR__.'/auth.php';
 
-// Profile routes (sudah ada dari Breeze)
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // Rute untuk Project
+    Route::get('/projects/create', [ProjectController::class, 'create'])->name('projects.create');
+    Route::post('/projects', [ProjectController::class, 'store'])->name('projects.store');
+    
+    // Rute untuk mengaktifkan project
+    Route::post('/projects/{project}/activate', [ProjectController::class, 'activate'])->name('projects.activate');
+
+    // Rute untuk AI Generation
+    Route::post('/ai/generate', [ProjectController::class, 'generate'])->name('ai.generate');
 });
 
 // Contoh routing ke modul (jika Anda menggunakan nWidart/laravel-modules)
