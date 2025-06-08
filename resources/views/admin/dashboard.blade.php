@@ -75,7 +75,7 @@
                     </svg>
                 </div>
                 <h3 class="card-title">AI Settings</h3>
-                <p class="text-muted">Configure Gemini API keys and other AI-related settings.</p>
+                <p class="text-muted">Configure API keys and other AI-related settings.</p>
             </div>
         </a>
     </div>

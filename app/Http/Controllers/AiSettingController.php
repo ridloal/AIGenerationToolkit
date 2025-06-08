@@ -24,8 +24,11 @@ class AiSettingController extends Controller
 
         // Expanded list of available models based on Gemini documentation
         $availableModels = [
+            'gemini-2.5-pro-latest',
+            'gemini-2.5-flash-latest',
+            'gemini-2.0-flash-001',
+            'gemini-1.5-pro-002',
             'gemini-1.5-flash-latest',
-            'gemini-1.5-pro-latest',
             'gemini-1.0-pro',
         ];
 
@@ -44,7 +47,7 @@ class AiSettingController extends Controller
             'api_keys' => 'nullable|array',
             'api_keys.*' => 'nullable|string',
             'strategy' => 'required|in:random,round-robin',
-            'model' => 'required|string|in:gemini-1.5-flash-latest,gemini-1.5-pro-latest,gemini-1.0-pro', // Updated validation
+            'model' => 'required|string', // Updated validation
             'language' => 'required|string|max:50',
             'tone' => 'required|string|max:100',
         ]);

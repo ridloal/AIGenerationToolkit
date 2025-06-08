@@ -57,6 +57,7 @@
                         <td>{{ $project->created_at->format('d M Y') }}</td>
                         <td>
                             <div class="d-flex">
+                                <a href="{{ route('projects.assets.index', $project) }}" class="btn btn-sm btn-outline-secondary me-2">Assets</a>
                                 <a href="{{ route('projects.edit', $project) }}" class="btn btn-sm btn-outline-primary me-2">Edit</a>
                                 <form action="{{ route('projects.destroy', $project) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this project?');">
                                     @csrf
@@ -94,6 +95,7 @@
                         <span class="badge bg-gray-lt">Inactive</span>
                     @endif
                     <div class="d-flex mt-3">
+                        <a href="{{ route('projects.assets.index', $project) }}" class="btn btn-sm btn-outline-secondary w-50 me-2">Assets</a>
                         <a href="{{ route('projects.edit', $project) }}" class="btn btn-sm btn-outline-primary w-50 me-2">Edit</a>
                         <form action="{{ route('projects.destroy', $project) }}" method="POST" class="w-50" onsubmit="return confirm('Are you sure you want to delete this project?');">
                             @csrf

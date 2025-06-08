@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AiSettingController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProjectAssetController;
 use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +33,11 @@ Route::middleware('auth')->group(function () {
 
     // Menggunakan Route::resource untuk menangani semua aksi CRUD Proyek
     Route::resource('projects', ProjectController::class);
+
+    // Project Assets Routes
+    Route::get('/projects/{project}/assets', [ProjectAssetController::class, 'index'])->name('projects.assets.index');
+    Route::post('/projects/{project}/assets', [ProjectAssetController::class, 'store'])->name('projects.assets.store');
+    Route::delete('/projects/assets/{asset}', [ProjectAssetController::class, 'destroy'])->name('projects.assets.destroy');
     
     // Rute untuk mengaktifkan project & generate AI tetap terpisah
     Route::post('/projects/{project}/activate', [ProjectController::class, 'activate'])->name('projects.activate');
