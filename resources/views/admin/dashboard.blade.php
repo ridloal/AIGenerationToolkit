@@ -61,6 +61,25 @@
             </div>
         </div>
     </div>
+
+    {{-- Admin Only: Settings Card --}}
+    @if(Auth::user()->hasRole('admin'))
+    <div class="col-md-6 col-lg-4">
+        <a href="{{ route('settings.ai.index') }}" class="card card-link card-link-pop">
+            <div class="card-body text-center">
+                <div class="mb-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-settings" width="64" height="64" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                       <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                       <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z" />
+                       <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+                    </svg>
+                </div>
+                <h3 class="card-title">AI Settings</h3>
+                <p class="text-muted">Configure Gemini API keys and other AI-related settings.</p>
+            </div>
+        </a>
+    </div>
+    @endif
     
 </div>
 @endsection

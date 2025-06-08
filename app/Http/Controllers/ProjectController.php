@@ -3,12 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Services\AiService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
 class ProjectController extends Controller
 {
+    public function __construct(private AiService $aiService)
+    {
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -125,24 +130,13 @@ class ProjectController extends Controller
         ]);
 
         try {
-            // Ini adalah contoh prompt yang lebih terstruktur
-            $fullPrompt = "Berdasarkan konteks proyek berikut:\n---" .
-                          $request->input('context', 'Tidak ada konteks tambahan.') .
-                          "\n---\n\n" .
-                          "Tolong generate konten untuk permintaan ini:\n" .
-                          $request->input('prompt');
-            
-            // DUMMY GEMINI API CALL
-            // Di aplikasi nyata, Anda akan mengganti ini dengan panggilan API sesungguhnya.
-            $responseText = "Ini adalah contoh respons yang dihasilkan oleh AI untuk prompt: '" . $request->input('prompt') . "'. Respons ini dibuat berdasarkan konteks yang Anda berikan untuk memastikan relevansi dan kualitas.";
-            
-            // Simulasi delay agar terlihat seperti panggilan API
-            sleep(1); 
-
+            $responseText = $this->aiService->generateText(
+                $request->input('prompt'),
+                $request->input('context', 'No additional context.')
+            );
             return response()->json(['success' => true, 'text' => $responseText]);
-
         } catch (\Exception $e) {
-            return response()->json(['success' => false, 'message' => 'Gagal menghasilkan konten: ' . $e->getMessage()], 500);
+            return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
         }
     }
 }

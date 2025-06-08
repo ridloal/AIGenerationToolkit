@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AiSettingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
@@ -35,6 +36,11 @@ Route::middleware('auth')->group(function () {
     // Rute untuk mengaktifkan project & generate AI tetap terpisah
     Route::post('/projects/{project}/activate', [ProjectController::class, 'activate'])->name('projects.activate');
     Route::post('/ai/generate', [ProjectController::class, 'generate'])->name('ai.generate');
+});
+
+Route::middleware(['auth', 'verified', 'admin'])->group(function () {
+    Route::get('/settings/ai', [AiSettingController::class, 'index'])->name('settings.ai.index');
+    Route::post('/settings/ai', [AiSettingController::class, 'store'])->name('settings.ai.store');
 });
 
 // Contoh routing ke modul (jika Anda menggunakan nWidart/laravel-modules)
