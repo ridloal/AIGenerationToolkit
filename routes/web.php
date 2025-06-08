@@ -29,14 +29,11 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    // Rute untuk Project
-    Route::get('/projects/create', [ProjectController::class, 'create'])->name('projects.create');
-    Route::post('/projects', [ProjectController::class, 'store'])->name('projects.store');
+    // Menggunakan Route::resource untuk menangani semua aksi CRUD Proyek
+    Route::resource('projects', ProjectController::class);
     
-    // Rute untuk mengaktifkan project
+    // Rute untuk mengaktifkan project & generate AI tetap terpisah
     Route::post('/projects/{project}/activate', [ProjectController::class, 'activate'])->name('projects.activate');
-
-    // Rute untuk AI Generation
     Route::post('/ai/generate', [ProjectController::class, 'generate'])->name('ai.generate');
 });
 

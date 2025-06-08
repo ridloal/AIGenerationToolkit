@@ -4,14 +4,13 @@
 @section('page_title', 'Dashboard Overview')
 
 @section('content')
-<div class="row row-deck row-cards">
+<div class="row row-deck row-cards mb-4">
     <div class="col-12">
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Welcome to AIGenerationToolkit!</h3>
             </div>
             <div class="card-body">
-                <p>This is your main dashboard. It's currently empty, but you can start adding widgets and content here.</p>
                 <p>Your User ID: <strong>{{ Auth::id() }}</strong></p>
                 <p>Your Roles: <strong>{{ Auth::user()->roles->pluck('name')->join(', ') }}</strong></p>
 
@@ -25,7 +24,44 @@
             </div>
         </div>
     </div>
-    {{-- Tambahkan card atau komponen Tabler lainnya di sini --}}
+</div>
+
+<div class="row g-4">
+    {{-- Project Management Card --}}
+    <div class="col-md-6 col-lg-4">
+        <a href="{{ route('projects.index') }}" class="card card-link card-link-pop">
+            <div class="card-body text-center">
+                <div class="mb-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-folder" width="64" height="64" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                       <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                       <path d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2" />
+                    </svg>
+                </div>
+                <h3 class="card-title">Project Management</h3>
+                <p class="text-muted">View, edit, and manage all of your YouTube channel projects.</p>
+            </div>
+        </a>
+    </div>
+
+    {{-- Placeholder Card for future menu --}}
+    <div class="col-md-6 col-lg-4">
+        <div class="card">
+            <div class="card-body text-center">
+                <div class="mb-3 text-muted">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chart-bar" width="64" height="64" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                       <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                       <path d="M3 12m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
+                       <path d="M9 8m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
+                       <path d="M15 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
+                       <path d="M4 20l14 0" />
+                    </svg>
+                </div>
+                <h3 class="card-title text-muted">Content Analytics</h3>
+                <p class="text-muted">(Coming Soon) Track the performance of your videos and content ideas.</p>
+            </div>
+        </div>
+    </div>
+    
 </div>
 @endsection
 
