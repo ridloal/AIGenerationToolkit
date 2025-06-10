@@ -1,7 +1,12 @@
+@php
+    // Tentukan apakah ini form untuk 'edit' atau 'create'
+    $isEdit = isset($content);
+@endphp
+
 @extends('layouts.admin')
 
-@section('title', 'Create Content Plan')
-@section('page_title', 'New Content Plan for: ' . $project->channel_name_final)
+@section('title', $isEdit ? 'Edit Content Plan' : 'Create Content Plan')
+@section('page_title', $isEdit ? 'Edit Content: ' . Str::limit($content->title, 40) : 'New Content Plan for: ' . $project->channel_name_final)
 
 @push('styles')
 <style>
@@ -19,8 +24,12 @@
 @endpush
 
 @section('content')
-<form action="{{ route('projects.contents.store', $project) }}" method="POST" id="content-form">
+<form action="{{ $isEdit ? route('contents.update', $content) : route('projects.contents.store', $project) }}" method="POST" id="content-form">
     @csrf
+    @if($isEdit)
+        @method('PATCH')
+    @endif
+    
     <div class="row g-4">
         {{-- Column 1: Main Form --}}
         <div class="col-lg-8">
@@ -43,27 +52,30 @@
                 <div class="card-body">
                     <div class="mb-3">
                         <div class="form-label-container"><label for="title" class="form-label required">Video Title</label><div class="ai-buttons" id="ai-buttons-title"></div></div>
-                        <input type="text" id="title" name="title" class="form-control" placeholder="Generate or enter a catchy video title" required>
+                        <input type="text" id="title" name="title" class="form-control" value="{{ old('title', $content->title ?? '') }}" required>
                     </div>
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <div class="form-label-container"><label class="form-label required">Video Format</label></div>
-                            <select name="video_format" class="form-select"><option value="long">Long Form</option><option value="short">Short</option></select>
+                            <select name="video_format" class="form-select">
+                                <option value="long" @selected(old('video_format', $content->video_format ?? 'long') == 'long')>Long Form</option>
+                                <option value="short" @selected(old('video_format', $content->video_format ?? 'long') == 'short')>Short</option>
+                            </select>
                         </div>
                         <div class="col-md-6 mb-3">
                             <div class="form-label-container"><label for="content_pillar" class="form-label">Content Pillar</label><div class="ai-buttons" id="ai-buttons-content_pillar"></div></div>
-                            <input type="text" id="content_pillar" name="content_pillar" class="form-control" placeholder="e.g., AI for Productivity" list="pillar-suggestions">
+                            <input type="text" id="content_pillar" name="content_pillar" class="form-control" value="{{ old('content_pillar', $content->content_pillar ?? '') }}" list="pillar-suggestions">
                             <datalist id="pillar-suggestions"></datalist>
                         </div>
                     </div>
                     <div class="mb-3">
                         <div class="form-label-container"><label for="main_goal" class="form-label">Primary Goal of This Video</label><div class="ai-buttons" id="ai-buttons-main_goal"></div></div>
-                        <input type="text" name="main_goal" id="main_goal" class="form-control" placeholder="e.g., Get viewers to try a specific AI tool" list="goal-suggestions">
+                        <input type="text" name="main_goal" id="main_goal" class="form-control" value="{{ old('main_goal', $content->main_goal ?? '') }}" list="goal-suggestions">
                         <datalist id="goal-suggestions"></datalist>
                     </div>
                     <div class="mb-3">
                         <div class="form-label-container"><label for="reference_info" class="form-label">References</label><div class="ai-buttons" id="ai-buttons-reference_info"></div></div>
-                        <textarea name="reference_info" id="reference_info" rows="3" class="form-control" placeholder="Add any links, scripts, or text references here..."></textarea>
+                        <textarea name="reference_info" id="reference_info" rows="3" class="form-control">{{ old('reference_info', $content->reference_info ?? '') }}</textarea>
                     </div>
                 </div>
             </div>
@@ -75,13 +87,13 @@
                     <div class="mb-4">
                         <div class="form-label-container"><label class="form-label h4">Script Outline</label><div class="ai-buttons" id="ai-buttons-structured-script-container"></div></div>
                         <div id="structured-script-container" class="mt-2"><p class="text-muted text-center">Generate a script outline to begin.</p></div>
-                        <textarea name="script_outline" id="script_outline_hidden" style="display: none;"></textarea>
+                        <textarea name="script_outline" id="script_outline_hidden" style="display: none;">{{ old('script_outline', $content->script_outline ?? '') }}</textarea>
                     </div>
                     <hr>
                     <div class="mt-4">
                         <div class="form-label-container"><label class="form-label h4">Visual Assets Needed</label><div class="ai-buttons" id="ai-buttons-structured-visuals-container"></div></div>
                         <div id="structured-visuals-container" class="mt-2"><p class="text-muted text-center">Generate a visual plan to begin.</p></div>
-                        <textarea name="visual_assets_needed" id="visual_assets_needed_hidden" style="display: none;"></textarea>
+                        <textarea name="visual_assets_needed" id="visual_assets_needed_hidden" style="display: none;">{{ old('visual_assets_needed', $content->visual_assets_needed ?? '') }}</textarea>
                     </div>
                 </div>
             </div>
@@ -92,11 +104,11 @@
                  <div class="card-body">
                     <div class="mb-3">
                         <div class="form-label-container"><label for="youtube_description" class="form-label">YouTube Description</label><div class="ai-buttons" id="ai-buttons-youtube_description"></div></div>
-                        <textarea name="youtube_description" id="youtube_description" rows="7" class="form-control" placeholder="Video Summary...&#10;&#10;TIMESTAMPS:&#10;00:00 - Intro"></textarea>
+                        <textarea name="youtube_description" id="youtube_description" rows="7" class="form-control">{{ old('youtube_description', $content->youtube_description ?? '') }}</textarea>
                     </div>
                     <div class="mb-3">
                         <div class="form-label-container"><label for="target_keywords" class="form-label">Tags / Keywords</label><div class="ai-buttons" id="ai-buttons-target_keywords"></div></div>
-                        <textarea name="target_keywords" id="target_keywords" rows="3" class="form-control" placeholder="ai tools, productivity hacks, etc."></textarea>
+                        <textarea name="target_keywords" id="target_keywords" rows="3" class="form-control">{{ old('target_keywords', $content->target_keywords ?? '') }}</textarea>
                     </div>
                  </div>
             </div>
@@ -380,6 +392,22 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('visual_assets_needed_hidden').value = JSON.stringify(visualsData, null, 2);
         } else { document.getElementById('visual_assets_needed_hidden').value = ''; }
     });
+
+    // Untuk EDIT Page
+    function populateOnLoad() {
+        const scriptJson = document.getElementById('script_outline_hidden').value;
+        if(scriptJson && scriptJson.trim() !== '') {
+            renderStructuredScript(scriptJson);
+        }
+
+        const visualsJson = document.getElementById('visual_assets_needed_hidden').value;
+        if(visualsJson && visualsJson.trim() !== '') {
+            renderStructuredVisuals(visualsJson);
+        }
+    }
+    
+    // Panggil fungsi ini saat halaman dimuat
+    populateOnLoad();
 });
 </script>
 @endpush

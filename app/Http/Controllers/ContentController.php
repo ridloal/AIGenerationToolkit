@@ -56,7 +56,7 @@ class ContentController extends Controller
     {
         $this->authorizeOwnership($content->project);
         $project = $content->project;
-        return view('contents.edit', compact('project', 'content'));
+        return view('contents.create', compact('project', 'content'));
     }
 
     /**
