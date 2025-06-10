@@ -41,28 +41,30 @@
             <div class="card mb-4" id="core-details-card">
                 <div class="card-header"><h3 class="card-title">Step 1: Core Video Details</h3></div>
                 <div class="card-body">
-                    <div class="mb-3"><label for="title" class="form-label required">Video Title</label><input type="text" id="title" name="title" class="form-control" placeholder="Generate or enter a catchy video title" required></div>
+                    <div class="mb-3">
+                        <div class="form-label-container"><label for="title" class="form-label required">Video Title</label><div class="ai-buttons" id="ai-buttons-title"></div></div>
+                        <input type="text" id="title" name="title" class="form-control" placeholder="Generate or enter a catchy video title" required>
+                    </div>
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <div class="form-label-container"><label class="form-label required">Video Format</label></div>
                             <select name="video_format" class="form-select"><option value="long">Long Form</option><option value="short">Short</option></select>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <div class="form-label-container"><label for="content_pillar" class="form-label">Content Pillar</label><div class="ai-buttons"><button type="button" class="btn btn-icon btn-outline-secondary btn-ai" data-bs-toggle="tooltip" title="Generate" data-target="content_pillar" data-type="generate-full" data-prompt-template="Suggest a relevant content pillar for this video."><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-text-ai" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M14 3v4a1 1 0 0 0 1 1h4"></path><path d="M10 21h-3a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v3.5"></path><path d="M9 9h1"></path><path d="M9 13h2.5"></path><path d="M9 17h1"></path><path d="M14 21v-4a2 2 0 1 1 4 0v4"></path><path d="M14 19h4"></path><path d="M21 15v6"></path></svg></button></div></div>
+                            <div class="form-label-container"><label for="content_pillar" class="form-label">Content Pillar</label><div class="ai-buttons" id="ai-buttons-content_pillar"></div></div>
                             <input type="text" id="content_pillar" name="content_pillar" class="form-control" placeholder="e.g., AI for Productivity" list="pillar-suggestions">
                             <datalist id="pillar-suggestions"></datalist>
                         </div>
                     </div>
                     <div class="mb-3">
-                        <div class="form-label-container"><label for="main_goal" class="form-label">Primary Goal of This Video</label><div class="ai-buttons"><button type="button" class="btn btn-icon btn-outline-secondary btn-ai" data-bs-toggle="tooltip" title="Enhance" data-target="main_goal" data-type="enhance" data-prompt-template="Enhance the following video goal to be more specific, measurable, achievable, relevant, and time-bound (SMART). Original goal:"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sparkles" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M16 18a2 2 0 0 1 2 2a2 2 0 0 1 2 -2a2 2 0 0 1 -2 -2a2 2 0 0 1 -2 2z"></path><path d="M8 18a2 2 0 0 1 2 2a2 2 0 0 1 2 -2a2 2 0 0 1 -2 -2a2 2 0 0 1 -2 2z"></path><path d="M12 10a2 2 0 0 1 2 2a2 2 0 0 1 2 -2a2 2 0 0 1 -2 -2a2 2 0 0 1 -2 2z"></path></svg></button><button type="button" class="btn btn-icon btn-outline-secondary btn-ai" data-bs-toggle="tooltip" title="Generate" data-target="main_goal" data-type="generate-full" data-prompt-template="Based on the video title, suggest a primary goal for this video (e.g., drive sign-ups, increase watch time, get comments)."><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-text-ai" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M14 3v4a1 1 0 0 0 1 1h4"></path><path d="M10 21h-3a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v3.5"></path><path d="M9 9h1"></path><path d="M9 13h2.5"></path><path d="M9 17h1"></path><path d="M14 21v-4a2 2 0 1 1 4 0v4"></path><path d="M14 19h4"></path><path d="M21 15v6"></path></svg></button></div></div>
+                        <div class="form-label-container"><label for="main_goal" class="form-label">Primary Goal of This Video</label><div class="ai-buttons" id="ai-buttons-main_goal"></div></div>
                         <input type="text" name="main_goal" id="main_goal" class="form-control" placeholder="e.g., Get viewers to try a specific AI tool" list="goal-suggestions">
                         <datalist id="goal-suggestions"></datalist>
                     </div>
                     <div class="mb-3">
-                        <div class="form-label-container"><label for="target_keywords" class="form-label">Target Keywords</label><div class="ai-buttons"><button type="button" class="btn btn-icon btn-outline-secondary btn-ai" data-bs-toggle="tooltip" title="Enhance" data-target="target_keywords" data-type="enhance" data-prompt-template="You are a YouTube SEO expert. Enhance and expand upon the following keywords. Add related long-tail keywords and synonyms. Original keywords:"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sparkles" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M16 18a2 2 0 0 1 2 2a2 2 0 0 1 2 -2a2 2 0 0 1 -2 -2a2 2 0 0 1 -2 2z"></path><path d="M8 18a2 2 0 0 1 2 2a2 2 0 0 1 2 -2a2 2 0 0 1 -2 -2a2 2 0 0 1 -2 2z"></path><path d="M12 10a2 2 0 0 1 2 2a2 2 0 0 1 2 -2a2 2 0 0 1 -2 -2a2 2 0 0 1 -2 2z"></path></svg></button><button type="button" class="btn btn-icon btn-outline-secondary btn-ai" data-bs-toggle="tooltip" title="Generate" data-target="target_keywords" data-type="generate-full" data-prompt-template="You are a YouTube SEO expert. Based on the video title and goal, generate a comma-separated list of 10-15 relevant keywords and tags."><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-text-ai" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M14 3v4a1 1 0 0 0 1 1h4"></path><path d="M10 21h-3a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v3.5"></path><path d="M9 9h1"></path><path d="M9 13h2.5"></path><path d="M9 17h1"></path><path d="M14 21v-4a2 2 0 1 1 4 0v4"></path><path d="M14 19h4"></path><path d="M21 15v6"></path></svg></button></div></div>
-                        <input type="text" name="target_keywords" id="target_keywords" class="form-control" placeholder="ai tools, productivity hacks, etc.">
+                        <div class="form-label-container"><label for="reference_info" class="form-label">References</label><div class="ai-buttons" id="ai-buttons-reference_info"></div></div>
+                        <textarea name="reference_info" id="reference_info" rows="3" class="form-control" placeholder="Add any links, scripts, or text references here..."></textarea>
                     </div>
-                    <div class="mb-3"><label for="reference_info" class="form-label">References</label><textarea name="reference_info" id="reference_info" rows="3" class="form-control" placeholder="Add any links, scripts, or text references here..."></textarea></div>
                 </div>
             </div>
 
@@ -71,31 +73,30 @@
                  <div class="card-header"><h3 class="card-title">Step 2: Script & Asset Planning</h3></div>
                 <div class="card-body">
                     <div class="mb-4">
-                        <div class="form-label-container"><label class="form-label h4">Script Outline</label><div class="ai-buttons"><button type="button" class="btn btn-icon btn-outline-secondary btn-ai" data-bs-toggle="tooltip" title="Generate Script" data-target="structured-script-container" data-type="generate-full" data-prompt-template='You are a YouTube scriptwriting expert. Based on the provided context, create a complete script outline. IMPORTANT: Your response MUST be a valid JSON object with the following structure: {"hook": {"text": "A captivating opening line...", "duration": "0-15s"}, "main_points": [{"title": "Main Point 1", "details": "Detailed explanation...", "duration": "1-2 min"}, {"title": "Main Point 2", "details": "...", "duration": "1 min"}], "cta": {"text": "Like, comment, and subscribe!", "duration": "15s"}, "outro": {"text": "A concluding remark and teaser for the next video.", "duration": "30s"}}.'><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-text-ai" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M14 3v4a1 1 0 0 0 1 1h4"></path><path d="M10 21h-3a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v3.5"></path><path d="M9 9h1"></path><path d="M9 13h2.5"></path><path d="M9 17h1"></path><path d="M14 21v-4a2 2 0 1 1 4 0v4"></path><path d="M14 19h4"></path><path d="M21 15v6"></path></svg></button></div></div>
-                        <div id="structured-script-container" class="mt-2"> <p class="text-muted text-center">Generate a script outline to begin.</p> </div>
+                        <div class="form-label-container"><label class="form-label h4">Script Outline</label><div class="ai-buttons" id="ai-buttons-structured-script-container"></div></div>
+                        <div id="structured-script-container" class="mt-2"><p class="text-muted text-center">Generate a script outline to begin.</p></div>
                         <textarea name="script_outline" id="script_outline_hidden" style="display: none;"></textarea>
                     </div>
                     <hr>
                     <div class="mt-4">
-                        <div class="form-label-container"><label class="form-label h4">Visual Assets Needed</label><div class="ai-buttons"><button type="button" class="btn btn-icon btn-outline-secondary btn-ai" data-bs-toggle="tooltip" title="Generate Visuals Plan" data-target="structured-visuals-container" data-type="generate-full" data-prompt-template='You are a visual director. Based on the script outline, create a plan for visual assets. IMPORTANT: Your response MUST be a valid JSON object with a single key "visuals" containing an array of objects. Each object should have this structure: {"scene": "Scene X", "topic": "Brief description", "visual_type": "Image", "prompt": "Detailed AI generation prompt", "keywords": "searchable, keywords, for, stock, sites"}.'><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-photo-ai" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 8h.01" /><path d="M12.5 21h-6.5a3 3 0 0 1 -3 -3v-12a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v6.5" /><path d="M3 16l5 -5c.928 -.893 2.072 -.893 3 0l3.5 3.5" /><path d="M14 14l1 -1c.679 -.653 1.473 -.829 2.24 -.63" /><path d="M14 21v-4a2 2 0 1 1 4 0v4" /><path d="M14 19h4" /><path d="M21 15v6" /></svg></button></div></div>
-                        <div id="structured-visuals-container" class="mt-2"> <p class="text-muted text-center">Generate a visual plan to begin.</p> </div>
+                        <div class="form-label-container"><label class="form-label h4">Visual Assets Needed</label><div class="ai-buttons" id="ai-buttons-structured-visuals-container"></div></div>
+                        <div id="structured-visuals-container" class="mt-2"><p class="text-muted text-center">Generate a visual plan to begin.</p></div>
                         <textarea name="visual_assets_needed" id="visual_assets_needed_hidden" style="display: none;"></textarea>
                     </div>
                 </div>
             </div>
 
+            {{-- YouTube Optimization Card --}}
             <div class="card mt-4">
                  <div class="card-header"><h3 class="card-title">Step 3: YouTube Optimization</h3></div>
                  <div class="card-body">
                     <div class="mb-3">
-                        <div class="form-label-container">
-                            <label for="youtube_description" class="form-label">YouTube Description</label>
-                            <div class="ai-buttons">
-                                <button type="button" class="btn btn-icon btn-outline-secondary btn-ai" data-bs-toggle="tooltip" title="Enhance" data-target="youtube_description" data-type="enhance" data-prompt-template="You are a YouTube SEO expert. Enhance the following video description to be more engaging and optimized for search. Add relevant hashtags and timestamps if possible. Original description:"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sparkles" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M16 18a2 2 0 0 1 2 2a2 2 0 0 1 2 -2a2 2 0 0 1 -2 -2a2 2 0 0 1 -2 2z"></path><path d="M8 18a2 2 0 0 1 2 2a2 2 0 0 1 2 -2a2 2 0 0 1 -2 -2a2 2 0 0 1 -2 2z"></path><path d="M12 10a2 2 0 0 1 2 2a2 2 0 0 1 2 -2a2 2 0 0 1 -2 -2a2 2 0 0 1 -2 2z"></path></svg></button>
-                                <button type="button" class="btn btn-icon btn-outline-secondary btn-ai" data-bs-toggle="tooltip" title="Generate Full" data-target="youtube_description" data-type="generate-full" data-prompt-template="You are a YouTube SEO expert. Write a full, optimized YouTube description based on the video title and script outline. Include a summary, timestamps (based on the script points), relevant links (as placeholders), and a call to action."><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-text-ai" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M14 3v4a1 1 0 0 0 1 1h4"></path><path d="M10 21h-3a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v3.5"></path><path d="M9 9h1"></path><path d="M9 13h2.5"></path><path d="M9 17h1"></path><path d="M14 21v-4a2 2 0 1 1 4 0v4"></path><path d="M14 19h4"></path><path d="M21 15v6"></path></svg></button>
-                            </div>
-                        </div>
+                        <div class="form-label-container"><label for="youtube_description" class="form-label">YouTube Description</label><div class="ai-buttons" id="ai-buttons-youtube_description"></div></div>
                         <textarea name="youtube_description" id="youtube_description" rows="7" class="form-control" placeholder="Video Summary...&#10;&#10;TIMESTAMPS:&#10;00:00 - Intro"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-label-container"><label for="target_keywords" class="form-label">Tags / Keywords</label><div class="ai-buttons" id="ai-buttons-target_keywords"></div></div>
+                        <textarea name="target_keywords" id="target_keywords" rows="3" class="form-control" placeholder="ai tools, productivity hacks, etc."></textarea>
                     </div>
                  </div>
             </div>
@@ -123,16 +124,63 @@
 
 @push('scripts')
 <script>
-// --- FULL SCRIPT WITH FIXES ---
+// --- FULL SCRIPT WITH ALL FIXES AND FEATURES ---
 document.addEventListener('DOMContentLoaded', function () {
     const mainForm = document.getElementById('content-form');
+    if (!mainForm) return;
+
+    // --- ELEMENT SELECTORS ---
     const projectId = `{{ $project->id }}`;
     const pillarDatalist = document.getElementById('pillar-suggestions');
     const goalDatalist = document.getElementById('goal-suggestions');
+    const scriptContainer = document.getElementById('structured-script-container');
+    const visualsContainer = document.getElementById('structured-visuals-container');
+    const aiPopup = document.getElementById('aiPopup');
+    const aiBackdrop = document.getElementById('aiBackdrop');
+    const aiPromptTextarea = document.getElementById('aiPrompt');
+    const aiSubmitBtn = document.getElementById('aiSubmitBtn');
+    const aiCancelBtn = document.getElementById('aiCancelBtn');
+    const aiSpinnerPopup = document.getElementById('aiSpinner');
+    let currentTargetId = null;
+    let currentTargetIsStructured = false;
 
-    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) { return new bootstrap.Tooltip(tooltipTriggerEl); });
+    // --- UTILITY: AI Button HTML Generator ---
+    function getAiButtonsHtml(targetId, options = {}) {
+        const { showTranslate = true, showEnhance = true, showGenerate = true, enhancePrompt = '', generatePrompt = '' } = options;
+        let buttons = '';
+        if (showTranslate) buttons += `<button type="button" class="btn btn-icon btn-outline-secondary btn-ai" data-bs-toggle="tooltip" title="Translate to Indonesian" data-target="${targetId}" data-type="translate"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 5h7" /><path d="M9 3v2c0 4.418 -2.239 8 -5 8" /><path d="M5 9c0 2.144 2.952 3.908 6.7 4" /><path d="M12 20l4 -9l4 9" /><path d="M19.1 18h-6.2" /></svg></button>`;
+        if (showEnhance) buttons += `<button type="button" class="btn btn-icon btn-outline-secondary btn-ai" data-bs-toggle="tooltip" title="Enhance" data-target="${targetId}" data-type="enhance" data-prompt-template="${enhancePrompt}"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sparkles" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M16 18a2 2 0 0 1 2 2a2 2 0 0 1 2 -2a2 2 0 0 1 -2 -2a2 2 0 0 1 -2 2z" /><path d="M8 18a2 2 0 0 1 2 2a2 2 0 0 1 2 -2a2 2 0 0 1 -2 -2a2 2 0 0 1 -2 2z" /><path d="M12 10a2 2 0 0 1 2 2a2 2 0 0 1 2 -2a2 2 0 0 1 -2 -2a2 2 0 0 1 -2 2z" /></svg></button>`;
+        if (showGenerate) buttons += `<button type="button" class="btn btn-icon btn-outline-secondary btn-ai" data-bs-toggle="tooltip" title="Generate" data-target="${targetId}" data-type="generate-full" data-prompt-template="${generatePrompt}"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-text-ai" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 3v4a1 1 0 0 0 1 1h4" /><path d="M10 21h-3a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v3.5" /><path d="M9 9h1" /><path d="M9 13h2.5" /><path d="M9 17h1" /><path d="M14 21v-4a2 2 0 1 1 4 0v4" /><path d="M14 19h4" /><path d="M21 15v6" /></svg></button>`;
+        return buttons;
+    }
 
+    // --- INITIALIZATION ---
+    function initializeTooltips() {
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) { return new bootstrap.Tooltip(tooltipTriggerEl); });
+    }
+
+    function setupAiButtons() {
+        // This function dynamically injects the AI buttons into their placeholders.
+        document.getElementById('ai-buttons-title').innerHTML = getAiButtonsHtml('title', { showEnhance: false, showGenerate: false });
+        document.getElementById('ai-buttons-content_pillar').innerHTML = getAiButtonsHtml('content_pillar', { showEnhance: false, generatePrompt: 'Suggest a relevant content pillar for this video.' });
+        document.getElementById('ai-buttons-main_goal').innerHTML = getAiButtonsHtml('main_goal', { enhancePrompt: 'Enhance the following video goal to be more specific, measurable, achievable, relevant, and time-bound (SMART). Original goal:', generatePrompt: 'Based on the video title, suggest a primary goal for this video (e.g., drive sign-ups, increase watch time, get comments).' });
+        document.getElementById('ai-buttons-reference_info').innerHTML = getAiButtonsHtml('reference_info', { showGenerate: false, enhancePrompt: 'Summarize the key points from the following references:' });
+        document.getElementById('ai-buttons-youtube_description').innerHTML = getAiButtonsHtml('youtube_description', { enhancePrompt: 'You are a YouTube SEO expert. Enhance the following video description to be more engaging and optimized for search. Add relevant hashtags and timestamps if possible. Original description:', generatePrompt: 'You are a YouTube SEO expert. Write a full, optimized YouTube description based on the video title and script outline. Include a summary, timestamps, relevant links (as placeholders), and a call to action.' });
+        document.getElementById('ai-buttons-target_keywords').innerHTML = getAiButtonsHtml('target_keywords', { enhancePrompt: 'You are a YouTube SEO expert. Enhance and expand upon the following keywords. Add related long-tail keywords and synonyms. Original keywords:', generatePrompt: 'You are a YouTube SEO expert. Based on the video title and goal, generate a comma-separated list of 10-15 relevant keywords and tags.' });
+        
+        // FIX: Escape double quotes inside the JSON string with &quot;
+        const scriptPrompt = 'You are a YouTube scriptwriting expert. Based on the provided context, create a complete script outline. IMPORTANT: Your response MUST be a valid JSON object with the following structure: {&quot;hook&quot;: {&quot;text&quot;: &quot;A captivating opening line...&quot;, &quot;duration&quot;: &quot;0-15s&quot;}, &quot;main_points&quot;: [{&quot;title&quot;: &quot;Main Point 1&quot;, &quot;details&quot;: &quot;Detailed explanation...&quot;, &quot;duration&quot;: &quot;1-2 min&quot;}], &quot;cta&quot;: {&quot;text&quot;: &quot;Like, comment, and subscribe!&quot;, &quot;duration&quot;: &quot;15s&quot;}, &quot;outro&quot;: {&quot;text&quot;: &quot;A concluding remark.&quot;, &quot;duration&quot;: &quot;30s&quot;}}';
+        document.getElementById('ai-buttons-structured-script-container').innerHTML = getAiButtonsHtml('structured-script-container', { showTranslate: false, showEnhance: false, generatePrompt: scriptPrompt });
+        
+        const visualsPrompt = 'You are a visual director. Based on the script outline, create a plan for visual assets. IMPORTANT: Your response MUST be a valid JSON object with a single key &quot;visuals&quot; containing an array of objects. Each object should have this structure: {&quot;scene&quot;: &quot;Scene X&quot;, &quot;topic&quot;: &quot;Brief description&quot;, &quot;visual_type&quot;: &quot;Image&quot;, &quot;prompt&quot;: &quot;Detailed AI generation prompt&quot;, &quot;keywords&quot;: &quot;searchable, keywords, for, stock, sites&quot;}.';
+        document.getElementById('ai-buttons-structured-visuals-container').innerHTML = getAiButtonsHtml('structured-visuals-container', { showTranslate: false, showEnhance: false, generatePrompt: visualsPrompt });
+
+        initializeTooltips();
+    }
+    setupAiButtons();
+
+    // --- DATA HANDLING & SUGGESTIONS ---
     async function loadSuggestions() {
         const storageKey = `project_suggestions_${projectId}`;
         let suggestions = JSON.parse(localStorage.getItem(storageKey));
@@ -151,120 +199,114 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     loadSuggestions();
 
-    const generateBtn = document.getElementById('generate_titles_btn');
-    const spinner = document.getElementById('generate-titles-spinner');
-    const suggestionsContainer = document.getElementById('title-suggestions-container');
-    const suggestionsList = document.getElementById('title-suggestions-list');
-    const mainTitleInput = document.getElementById('title');
-    const contextCard = document.getElementById('project-context-card');
-
-    generateBtn.addEventListener('click', function() {
-        const keyword = document.getElementById('title_keyword').value;
-        const style = document.getElementById('title_style').value;
-        if (!keyword) { alert('Please enter a main keyword.'); return; }
-        spinner.classList.remove('d-none'); this.disabled = true;
-        let projectContext = "Channel Name: " + contextCard.querySelector('#context-channel-name').textContent.trim() + "\n" + "Channel Description: " + contextCard.querySelector('#context-description').textContent.trim() + "\n" + "Target Audience: " + contextCard.querySelector('#context-audience').textContent.trim();
-        const prompt = `You are a YouTube title expert. Based on the following project context:\n---\n${projectContext}\n---\n\nGenerate exactly 5 video title suggestions. The titles should be based on the keyword "${keyword}" and have a "${style}" style. IMPORTANT: Return the result ONLY as a valid JSON array of strings, like ["title 1", "title 2", "title 3", "title 4", "title 5"]. Do not include any other text or formatting.`;
-        fetch('{{ route("ai.generate") }}', { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': '{{ csrf_token() }}' }, body: JSON.stringify({ prompt: prompt, context: projectContext })})
-        .then(response => response.json()).then(data => {
-            if (data.success) {
-                try {
-                    const cleanedText = data.text.replace(/```json\n?|```/g, '').trim();
-                    const titles = JSON.parse(cleanedText);
-                    suggestionsList.innerHTML = '';
-                    titles.forEach(title => {
-                        const item = document.createElement('div');
-                        item.className = 'list-group-item d-flex justify-content-between align-items-center';
-                        item.textContent = title;
-                        const useBtn = document.createElement('button');
-                        useBtn.type = 'button'; useBtn.className = 'btn btn-sm btn-outline-primary'; useBtn.textContent = 'Use this';
-                        useBtn.onclick = function() { mainTitleInput.value = title; };
-                        item.appendChild(useBtn);
-                        suggestionsList.appendChild(item);
-                    });
-                    suggestionsContainer.classList.remove('d-none');
-                } catch (e) { alert('The AI returned an invalid format. Please try again.\n\nRaw response:\n' + data.text); }
-            } else { alert('Error: ' + (data.message || 'Unknown error')); }
-        }).catch(error => { console.error('Error:', error); alert('An unexpected error occurred.'); }).finally(() => { spinner.classList.add('d-none'); generateBtn.disabled = false; });
-    });
-
-    const aiPopup = document.getElementById('aiPopup');
-    const aiBackdrop = document.getElementById('aiBackdrop');
-    const aiPromptTextarea = document.getElementById('aiPrompt');
-    const aiSubmitBtn = document.getElementById('aiSubmitBtn');
-    const aiCancelBtn = document.getElementById('aiCancelBtn');
-    const aiSpinnerPopup = document.getElementById('aiSpinner');
-    let currentTargetId = null;
-    let currentTargetIsStructured = false;
-    function openAiPopup(finalPrompt, targetId, isStructured = false) { currentTargetId = targetId; currentTargetIsStructured = isStructured; aiPromptTextarea.value = finalPrompt; aiPopup.style.display = 'block'; aiBackdrop.style.display = 'block'; }
-    function closeAiPopup() { aiPopup.style.display = 'none'; aiBackdrop.style.display = 'none'; aiSpinnerPopup.classList.add('d-none'); aiSubmitBtn.disabled = false; }
-    aiCancelBtn.addEventListener('click', closeAiPopup);
-    aiBackdrop.addEventListener('click', closeAiPopup);
-
     function gatherFullContext() {
+        // This function gathers all available information from the form to create a rich context for the AI.
         let context = "PROJECT CONTEXT:\n";
         context += `Channel Name: {{ $project->channel_name_final }}\n`;
         context += `Description: {{ $project->channel_description }}\n`;
         context += `Audience: {{ $project->primary_audience_persona }}\n\n`;
         context += "CURRENT VIDEO PLAN:\n";
-        
-        const fieldsToInclude = {
-            'title': 'Video Title',
-            'video_format': 'Video Format',
-            'content_pillar': 'Content Pillar',
-            'main_goal': 'Primary Goal',
-            'target_keywords': 'Target Keywords',
-            'reference_info': 'References'
-        };
-
+        const fieldsToInclude = { 'title': 'Video Title', 'video_format': 'Video Format', 'content_pillar': 'Content Pillar', 'main_goal': 'Primary Goal', 'target_keywords': 'Tags / Keywords', 'reference_info': 'References', 'youtube_description': 'YouTube Description' };
         for (const [id, label] of Object.entries(fieldsToInclude)) {
             const element = document.getElementById(id);
-            if (element && element.value.trim()) {
-                context += `${label}: ${element.value.trim()}\n`;
-            }
+            if (element && element.value.trim()) { context += `${label}: ${element.value.trim()}\n`; }
         }
-        
         const videoFormat = document.querySelector('[name=video_format]').value;
-        if (videoFormat === 'short') {
-            context += "Target Video Length: 45-90 seconds.\n";
-        } else if (videoFormat === 'long') {
-            context += "Target Video Length: Over 4 minutes.\n";
-        }
+        if (videoFormat === 'short') { context += "Target Video Length: 45-90 seconds.\n"; } else if (videoFormat === 'long') { context += "Target Video Length: Over 4 minutes.\n"; }
         
-        // --- NEW: Add script outline to context ---
         const scriptJson = document.getElementById('script_outline_hidden').value;
         if (scriptJson && scriptJson.trim()) {
             try {
                 const scriptData = JSON.parse(scriptJson);
                 context += "\nSCRIPT OUTLINE SUMMARY:\n";
                 if(scriptData.hook?.text) context += `- Hook: ${scriptData.hook.text}\n`;
-                if(scriptData.main_points) {
-                    scriptData.main_points.forEach((point, index) => {
-                        context += `- Main Point ${index + 1}: ${point.title}\n`;
-                    });
-                }
+                if(scriptData.main_points) { scriptData.main_points.forEach((point, index) => { context += `- Main Point ${index + 1}: ${point.title}\n`; }); }
                 if(scriptData.cta?.text) context += `- CTA: ${scriptData.cta.text}\n`;
-            } catch(e) {
-                // If JSON is invalid, just add the raw text
-                context += "\nSCRIPT OUTLINE (Raw):\n" + scriptJson + "\n";
-            }
+            } catch(e) { /* Ignore if JSON is invalid */ }
         }
-
         return context.trim();
     }
+    
+    // --- AI POPUP LOGIC ---
+    function openAiPopup(prompt, targetId, isStructured = false) {
+        currentTargetId = targetId;
+        currentTargetIsStructured = isStructured;
+        aiPromptTextarea.value = prompt;
+        aiPopup.style.display = 'block';
+        aiBackdrop.style.display = 'block';
+    }
+    function closeAiPopup() {
+        aiPopup.style.display = 'none';
+        aiBackdrop.style.display = 'none';
+        aiSpinnerPopup.classList.add('d-none');
+        aiSubmitBtn.disabled = false;
+    }
+    aiCancelBtn.addEventListener('click', closeAiPopup);
+    aiBackdrop.addEventListener('click', closeAiPopup);
 
-    document.querySelectorAll('.btn-ai').forEach(button => {
-        button.addEventListener('click', function() {
-            const targetId = this.dataset.target; const targetElement = document.getElementById(targetId); const promptTemplate = this.dataset.promptTemplate; const actionType = this.dataset.type; let finalPrompt = '';
-            if (actionType === 'enhance') { if (!targetElement.value.trim()) { alert('Please write something to enhance.'); return; } finalPrompt = promptTemplate + `"${targetElement.value}"`; } else { finalPrompt = promptTemplate; }
-            const isStructured = targetId === 'structured-script-container' || targetId === 'structured-visuals-container';
+    // --- EVENT LISTENERS (Delegated) ---
+    mainForm.addEventListener('click', function(e) {
+        const aiButton = e.target.closest('.btn-ai');
+        if (aiButton) {
+            const targetId = aiButton.dataset.target;
+            const targetElement = document.getElementById(targetId);
+            const actionType = aiButton.dataset.type;
+            let finalPrompt = '';
+
+            if (actionType === 'translate') {
+                if (!targetElement.value.trim()) { alert('Please enter text to translate.'); return; }
+                finalPrompt = `Translate the following text to Indonesian: "${targetElement.value}"`;
+            } else if (actionType === 'enhance') {
+                if (!targetElement.value.trim()) { alert('Please write something to enhance.'); return; }
+                finalPrompt = aiButton.dataset.promptTemplate + `"${targetElement.value}"`;
+            } else { // generate-full
+                finalPrompt = aiButton.dataset.promptTemplate;
+            }
+            
+            const isStructured = targetId.includes('structured-');
             openAiPopup(finalPrompt, targetId, isStructured);
-        });
+        }
+
+        const titlesBtn = e.target.closest('#generate_titles_btn');
+        if (titlesBtn) {
+            const keyword = document.getElementById('title_keyword').value;
+            const style = document.getElementById('title_style').value;
+            if (!keyword) { alert('Please enter a main keyword.'); return; }
+            const spinner = document.getElementById('generate-titles-spinner');
+            spinner.classList.remove('d-none'); titlesBtn.disabled = true;
+            const projectContext = `Channel Name: ${document.getElementById('context-channel-name').textContent.trim()}\nDescription: ${document.getElementById('context-description').textContent.trim()}`;
+            const prompt = `You are a YouTube title expert. Based on the project context:\n---\n${projectContext}\n---\n\nGenerate exactly 5 video title suggestions for the keyword "${keyword}" with a "${style}" style. IMPORTANT: Return ONLY a valid JSON array of strings.`;
+            
+            fetch('{{ route("ai.generate") }}', { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': '{{ csrf_token() }}' }, body: JSON.stringify({ prompt: prompt, context: projectContext })})
+            .then(res => res.json()).then(data => {
+                if(data.success) {
+                    try {
+                        const titles = parseAiJson(data.text);
+                        const list = document.getElementById('title-suggestions-list');
+                        list.innerHTML = '';
+                        titles.forEach(title => {
+                            const item = document.createElement('div');
+                            item.className = 'list-group-item d-flex justify-content-between align-items-center';
+                            item.textContent = title;
+                            const btn = document.createElement('button');
+                            btn.type = 'button'; btn.className = 'btn btn-sm btn-outline-primary'; btn.textContent = 'Use this';
+                            btn.onclick = () => { document.getElementById('title').value = title; };
+                            item.appendChild(btn);
+                            list.appendChild(item);
+                        });
+                        document.getElementById('title-suggestions-container').classList.remove('d-none');
+                    } catch (e) { alert('AI response format error.'); }
+                } else { alert(`Error: ${data.message}`); }
+            }).catch(err => alert('Request failed.'))
+            .finally(() => { spinner.classList.add('d-none'); titlesBtn.disabled = false; });
+        }
     });
 
     aiSubmitBtn.addEventListener('click', function() {
-        if (!currentTargetId) return; aiSpinnerPopup.classList.remove('d-none'); this.disabled = true;
+        if (!currentTargetId) return;
+        aiSpinnerPopup.classList.remove('d-none'); this.disabled = true;
         const fullContext = gatherFullContext();
+        
         fetch('{{ route("ai.generate") }}', { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': '{{ csrf_token() }}' }, body: JSON.stringify({ prompt: aiPromptTextarea.value, context: fullContext })})
         .then(response => response.json()).then(data => {
             if (data.success) {
@@ -277,16 +319,15 @@ document.addEventListener('DOMContentLoaded', function () {
         }).catch(error => { console.error('Error:', error); alert('An unexpected error occurred.'); closeAiPopup(); });
     });
 
+    // --- STRUCTURED DATA FUNCTIONS ---
     function parseAiJson(jsonString) {
-        const firstBracket = jsonString.indexOf('{'); const lastBracket = jsonString.lastIndexOf('}');
-        if (firstBracket !== -1 && lastBracket !== -1) {
-            const potentialJson = jsonString.substring(firstBracket, lastBracket + 1);
-            try { return JSON.parse(potentialJson); } catch (e) { throw new Error("Extracted text is not valid JSON."); }
+        const match = /\{[\s\S]*\}|\[[\s\S]*\]/.exec(jsonString);
+        if (match) {
+            try { return JSON.parse(match[0]); } catch (e) { throw new Error("Could not parse extracted JSON."); }
         }
-        throw new Error("Could not find a valid JSON object in the AI response.");
+        throw new Error("No valid JSON found in response.");
     }
 
-    const scriptContainer = document.getElementById('structured-script-container');
     function renderStructuredScript(jsonString) {
         try {
             const data = parseAiJson(jsonString); scriptContainer.innerHTML = '';
@@ -301,7 +342,6 @@ document.addEventListener('DOMContentLoaded', function () {
         } catch (e) { console.error("Failed to parse script JSON:", e, "Raw:", jsonString); scriptContainer.innerHTML = `<p class="text-danger text-center">Could not display script. The AI returned an invalid format.</p>`; }
     }
 
-    const visualsContainer = document.getElementById('structured-visuals-container');
     function renderStructuredVisuals(jsonString) {
         try {
             const data = parseAiJson(jsonString); visualsContainer.innerHTML = '';
@@ -312,7 +352,6 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         } catch (e) { console.error("Failed to parse visuals JSON:", e, "Raw:", jsonString); visualsContainer.innerHTML = `<p class="text-danger text-center">Could not display visuals. The AI returned an invalid format.</p>`; }
     }
-
     mainForm.addEventListener('submit', function(e) {
         const scriptItems = scriptContainer.querySelectorAll('.structured-item');
         if (scriptItems.length > 0) {
