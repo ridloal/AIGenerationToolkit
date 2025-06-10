@@ -7,6 +7,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Client\RequestException;
+use Illuminate\Support\Facades\Log;
 
 class AiService
 {
@@ -41,29 +42,28 @@ class AiService
 
         // Construct a more robust prompt with explicit rules for the AI
         $fullPrompt =
-            "**Primary Rule:** Generate the entire response strictly in the following language: '{$language}'.\n" .
-            "**Secondary Rule:** Adopt a '{$tone}' tone of voice.\n\n" .
-            "**Additional Rule:** Concise and to the point response output.\n\n" .
+            "**Primary Instruction:** Your response MUST be only the requested content, without any introductory or concluding text like 'Here is the result' or 'Okay'.\n" .
+            "**Secondary Instruction:** Generate the entire response strictly in the following language: '{$language}'.\n" .
+            "**Tertiary Instruction:** Adopt a '{$tone}' tone of voice.\n\n" .
             "**Project Context:**\n---\n{$context}\n---\n\n" .
             "**User's Request:**\n{$prompt}";
 
+        // --- DEBUG LOGGING ---
+        Log::debug('Sending to Gemini API:', ['url' => self::API_BASE_URL . $model, 'prompt' => $fullPrompt]);
+
         try {
             $response = Http::timeout(60)->post($apiUrl, [
-                'contents' => [
-                    [
-                        'parts' => [
-                            ['text' => $fullPrompt]
-                        ]
-                    ]
-                ]
+                'contents' => [['parts' => [['text' => $fullPrompt]]]]
             ]);
 
-            $response->throw();
+            // --- DEBUG LOGGING ---
+            Log::debug('Received from Gemini API:', ['status' => $response->status(), 'response' => $response->json()]);
 
+            $response->throw();
             $generatedText = $response->json('candidates.0.content.parts.0.text');
 
             if (is_null($generatedText)) {
-                throw new \Exception('Failed to extract generated text from the API response. The response might have been filtered for safety reasons.');
+                throw new \Exception('Failed to extract generated text. The response might have been filtered for safety reasons.');
             }
 
             return $generatedText;
@@ -72,7 +72,7 @@ class AiService
             $errorBody = $e->response->json('error.message') ?? $e->getMessage();
             throw new \Exception("AI API Error: " . $errorBody);
         } catch (\Exception $e) {
-            throw new \Exception("An unexpected error occurred while contacting the AI service: " . $e->getMessage());
+            throw new \Exception("An unexpected error occurred: " . $e->getMessage());
         }
     }
 

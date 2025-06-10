@@ -47,4 +47,9 @@ class Project extends Model
     {
         return $this->hasMany(ProjectAsset::class);
     }
+
+    public function contents(): HasMany
+    {
+        return $this->hasMany(Content::class);
+    }
 }

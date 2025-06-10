@@ -139,4 +139,55 @@ class ProjectController extends Controller
             return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
         }
     }
+
+    /**
+     * Generate dynamic suggestions for content creation form fields.
+     */
+    public function generateSuggestions(Project $project)
+    {
+        $this->authorizeOwnership($project);
+
+        $context = "Channel Name: " . $project->channel_name_final . "\n" .
+                   "Channel Description: " . $project->channel_description . "\n" .
+                   "Primary Audience: " . $project->primary_audience_persona . "\n" .
+                   "Content Pillars: " . $project->content_pillars . "\n" .
+                   "Channel Missions: " . $project->channel_mission . "\n" .
+                   "Unique Selling Proposition: " . $project->unique_selling_proposition;
+
+        $prompt = "Based on the provided project context, generate suggestions for a new video content plan. I need suggestions for two specific fields:\n" .
+                  "1. 'content_pillars': Generate 5 potential content pillar names this video could fall under. its possible defined in content pillars above please create summary in point\n" .
+                  "2. 'main_goals': Generate 5 potential primary goals for a video on this channel.\n\n" .
+                  "IMPORTANT: Return the result ONLY as a valid JSON object with two keys: 'pillars' and 'goals'. Each key should contain an array of strings. Example: {\"pillars\":[\"AI for Productivity\",\"AI Tool Reviews\"],\"goals\":[\"Get 100 subscribers\",\"Drive traffic to a blog post\"]}";
+
+        try {
+            $rawResponse = $this->aiService->generateText($prompt, $context);
+            // Clean the response to ensure it's valid JSON
+            $cleanedJson = preg_replace('/```json\s*|\s*```/', '', $rawResponse);
+            $suggestions = json_decode($cleanedJson, true);
+
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                // Fallback if AI doesn't return valid JSON
+                throw new \Exception("AI returned an invalid format.");
+            }
+            
+            return response()->json($suggestions);
+
+        } catch (\Exception $e) {
+            // Provide a generic fallback on error
+            return response()->json([
+                'pillars' => ['AI Tool Reviews', 'Productivity Hacks', 'AI Experiments'],
+                'goals' => ['Increase Subscribers', 'Drive Website Traffic', 'Promote an Affiliate Product', 'Build Community Engagement']
+            ]);
+        }
+    }
+
+    /**
+     * Helper to authorize that the user owns the project.
+     */
+    private function authorizeOwnership(Project $project)
+    {
+        if ($project->user_id !== Auth::id()) {
+            abort(403, 'Unauthorized action.');
+        }
+    }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AiSettingController;
+use App\Http\Controllers\ContentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectAssetController;
 use App\Http\Controllers\ProjectController;
@@ -42,6 +43,14 @@ Route::middleware('auth')->group(function () {
     // Rute untuk mengaktifkan project & generate AI tetap terpisah
     Route::post('/projects/{project}/activate', [ProjectController::class, 'activate'])->name('projects.activate');
     Route::post('/ai/generate', [ProjectController::class, 'generate'])->name('ai.generate');
+
+    // Content Generation Routes
+    Route::resource('projects.contents', ContentController::class)->shallow();
+
+    // Route untuk menghasilkan sugesti dinamis
+    Route::post('/projects/{project}/generate-suggestions', [ProjectController::class, 'generateSuggestions'])->name('projects.generate_suggestions');
+
+    // We will add edit/update/delete routes later
 });
 
 Route::middleware(['auth', 'verified', 'admin'])->group(function () {
